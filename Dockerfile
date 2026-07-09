@@ -12,7 +12,9 @@ COPY pyproject.toml README.md ./
 COPY app ./app
 COPY config.example.json /config/config.json
 
-RUN pip install --no-cache-dir .
+RUN apt-get update && apt-get install -y --no-install-recommends gcc && \
+    pip install --no-cache-dir . && \
+    apt-get purge -y gcc && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8000
 
