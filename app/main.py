@@ -17,7 +17,7 @@ from titiler.core.factory import TilerFactory, TMSFactory
 from titiler.extensions.wmts import wmtsExtension
 
 CONFIG_PATH = Path(os.environ.get("TITILER_CONFIG", "config.json"))
-TMS_ID = "NetherlandsRDNewQuad"
+TMS_ID = "EPSG:28992"
 LAYER_NAME_RE = re.compile(r"^[A-Za-z0-9_-]+$")
 
 
@@ -108,7 +108,7 @@ def tiles_landing_html() -> str:
           </div>
           <label>Available projections</label>
           <div class="projection-list">
-            <a href="/tiles/tileMatrixSets/NetherlandsRDNewQuad">EPSG:28992</a>
+            <a href="/tiles/tileMatrixSets/EPSG:28992">EPSG:28992</a>
           </div>
           <div class="endpoint-list">
             <div>
@@ -272,9 +272,8 @@ netherlands_rd_new = TileMatrixSet.custom(
     # National Dutch RD New tiling extent used by the standard EPSG:28992 WMTS grid.
     (-285401.92, 22598.08, 595401.92, 903401.92),
     CRS.from_epsg(28992),
-    id=TMS_ID,
     matrix_scale=[1, 1],
-)
+).model_copy(update={"id": TMS_ID})
 
 supported_tms = TileMatrixSets({TMS_ID: netherlands_rd_new})
 
@@ -313,6 +312,7 @@ async def hide_source_urls(request, call_next):
         for source in {layer["url"], normalize_cog_url(layer["url"])}:
             text = text.replace(f"{source}_", f"{layer_name}_")
             text = text.replace(source, layer_name)
+        text = text.replace(f"{layer_name}_{TMS_ID}_default", layer_name)
 
     headers = dict(response.headers)
     headers.pop("content-length", None)

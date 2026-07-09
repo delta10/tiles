@@ -4,7 +4,7 @@ FastAPI tile service serving configured Cloud Optimized GeoTIFF layers as TMS/XY
 
 The app registers only the Dutch RD New TileMatrixSet:
 
-- `NetherlandsRDNewQuad` for `EPSG:28992`
+- `EPSG:28992`
 
 ## Config
 
@@ -36,10 +36,27 @@ Layer names may contain only letters, numbers, underscores, and hyphens.
 
 This project uses `uv` with Python pinned in `pyproject.toml`.
 
+Install dependencies and create a local config file:
+
 ```bash
 uv sync
-uv run uvicorn app.main:app --reload
+cp config.example.json config.json
 ```
+
+Start the app:
+
+```bash
+uv run python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+If your environment cannot write to the default `uv` cache directory, keep the cache inside the project:
+
+```bash
+UV_CACHE_DIR=.uv-cache uv sync
+UV_CACHE_DIR=.uv-cache uv run python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+For local development in an environment that supports file watching, add `--reload`.
 
 The app root redirects to the web UI at `http://127.0.0.1:8000/tiles`.
 
@@ -51,16 +68,22 @@ Run lint checks with:
 uv run ruff check .
 ```
 
+Or, with a workspace-local `uv` cache:
+
+```bash
+UV_CACHE_DIR=.uv-cache uv run ruff check .
+```
+
 ## Useful Endpoints
 
 - Web UI: `http://127.0.0.1:8000/tiles`
 - Layers JSON: `http://127.0.0.1:8000/layers`
 - Service metadata: `http://127.0.0.1:8000/metadata`
 - TMS list: `http://127.0.0.1:8000/tiles/tileMatrixSets`
-- Layer map viewer: `http://127.0.0.1:8000/tiles/lufo_2025/NetherlandsRDNewQuad/map.html`
-- Layer TileJSON: `http://127.0.0.1:8000/tiles/lufo_2025/NetherlandsRDNewQuad/tilejson.json?tile_format=png`
-- Layer TMS/XYZ tile URL template: `http://127.0.0.1:8000/tiles/lufo_2025/tiles/NetherlandsRDNewQuad/{z}/{x}/{y}.png`
-- Layer WMTS capabilities: `http://127.0.0.1:8000/tiles/lufo_2025/WMTSCapabilities.xml?TileMatrixSetId=NetherlandsRDNewQuad&tile_format=png`
+- Layer map viewer: `http://127.0.0.1:8000/tiles/lufo_2025/EPSG:28992/map.html`
+- Layer TileJSON: `http://127.0.0.1:8000/tiles/lufo_2025/EPSG:28992/tilejson.json?tile_format=png`
+- Layer TMS/XYZ tile URL template: `http://127.0.0.1:8000/tiles/lufo_2025/tiles/EPSG:28992/{z}/{x}/{y}.png`
+- Layer WMTS capabilities: `http://127.0.0.1:8000/tiles/lufo_2025/WMTSCapabilities.xml?TileMatrixSetId=EPSG:28992&tile_format=png`
 
 ## Docker
 
