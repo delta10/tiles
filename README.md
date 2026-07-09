@@ -36,16 +36,22 @@ Layer names may contain only letters, numbers, underscores, and hyphens.
 
 ## Run
 
+This project uses `uv` with Python pinned in `pyproject.toml`.
+
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
-uvicorn app.main:app --reload
+uv sync
+uv run uvicorn app.main:app --reload
 ```
 
 The app root redirects to the web UI at `http://127.0.0.1:8000/tiles`.
 
 Open `http://127.0.0.1:8000/docs` for the API docs.
+
+Run lint checks with:
+
+```bash
+uv run ruff check .
+```
 
 ## Useful Endpoints
 
@@ -59,6 +65,8 @@ Open `http://127.0.0.1:8000/docs` for the API docs.
 - Layer WMTS capabilities: `http://127.0.0.1:8000/tiles/lufo_2025/WMTSCapabilities.xml?TileMatrixSetId=NetherlandsRDNewQuad&tile_format=png`
 
 ## Docker
+
+The Docker image is a multi-stage build. Build dependencies such as `gcc` and `libc6-dev` are only installed in the builder stage; the runtime stage runs as `www-data`.
 
 Build and run with the example config baked into the image:
 
