@@ -67,6 +67,7 @@ uv run ruff check .
 ## Docker
 
 The Docker image is a multi-stage build. Build dependencies such as `gcc` and `libc6-dev` are only installed in the builder stage; the runtime stage runs as `www-data`.
+The runtime trusts proxy forwarding headers so generated URLs use the original client scheme from headers such as `X-Forwarded-Proto`.
 
 Build and run with the example config baked into the image:
 
