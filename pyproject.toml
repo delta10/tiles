@@ -1,0 +1,19 @@
+[project]
+name = "tiles"
+version = "0.1.0"
+description = "Tile service for configured COG layers as TMS and WMTS."
+requires-python = ">=3.11"
+dependencies = [
+    "titiler.core>=1.0,<2.0",
+    "titiler.extensions>=1.0,<2.0",
+    "uvicorn[standard]>=0.30",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

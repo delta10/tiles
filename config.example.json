@@ -1,0 +1,9 @@
+{
+  "title": "Tiles",
+  "layers": [
+    {
+      "name": "example_layer",
+      "url": "cog://https://example.com/path/to/cog.tif"
+    }
+  ]
+}
