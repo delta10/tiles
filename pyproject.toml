@@ -6,7 +6,7 @@ requires-python = ">=3.11"
 dependencies = [
     "titiler.core>=1.0,<2.0",
     "titiler.extensions>=1.0,<2.0",
-    "uvicorn[standard]>=0.30",
+    "uvicorn[standard]>=0.51.0",
 ]
 
 [project.optional-dependencies]
