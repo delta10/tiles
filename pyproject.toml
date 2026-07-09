@@ -4,8 +4,8 @@ version = "0.1.0"
 description = "Tile service for configured COG layers as TMS and WMTS."
 requires-python = "==3.14.4"
 dependencies = [
-    "titiler.core==1.2.1",
-    "titiler.extensions==1.2.1",
+    "titiler.core==2.0.5",
+    "titiler.extensions==2.0.5",
     "uvicorn[standard]==0.51.0",
 ]
 

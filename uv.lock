@@ -148,16 +148,16 @@ wheels = [
 ]
 
 [[package]]
-name = "httpcore"
-version = "1.0.9"
+name = "httpcore2"
+version = "2.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "certifi" },
     { name = "h11" },
+    { name = "truststore" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/06/94/82699a10bca87a5556c9c59b5963f2d039dbd239f25bc2a63907a05a14cb/httpcore-1.0.9.tar.gz", hash = "sha256:6e34463af53fd2ab5d807f399a9b45ea31c3dfa2276f15a2c3f00afff6e176e8", size = 85484, upload-time = "2025-04-24T22:06:22.219Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/47/06/5c12df521b5322fb1114a83d46911b2fbcb8855ddb3a635f11c01a214af5/httpcore2-2.5.0.tar.gz", hash = "sha256:88aa170137c17328d5ac44234f9fd10706466d5fb347f3edac4d39b91137b09d", size = 64808, upload-time = "2026-06-25T14:16:56.472Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/f5/f66802a942d491edb555dd61e3a9961140fd64c90bce1eafd741609d334d/httpcore-1.0.9-py3-none-any.whl", hash = "sha256:2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55", size = 78784, upload-time = "2025-04-24T22:06:20.566Z" },
+    { url = "https://files.pythonhosted.org/packages/c9/a1/7564199d1a8728fe737b0a72e5b3f8d92dfe085a74ddf7cdd83bce5f206d/httpcore2-2.5.0-py3-none-any.whl", hash = "sha256:5ce35188de461d31e8d000bfb8ef8bf22c6c16587a211e5571deaa5e9bdf842a", size = 80330, upload-time = "2026-06-25T14:16:53.634Z" },
 ]
 
 [[package]]
@@ -183,18 +183,18 @@ wheels = [
 ]
 
 [[package]]
-name = "httpx"
-version = "0.28.1"
+name = "httpx2"
+version = "2.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
-    { name = "certifi" },
-    { name = "httpcore" },
+    { name = "httpcore2" },
     { name = "idna" },
+    { name = "truststore" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz", hash = "sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc", size = 141406, upload-time = "2024-12-06T15:37:23.222Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d0/e2/b5dedc0cf35aa65de5f541ccd30d2bc1fd7f1d43c9ab09f8ed9a7342317b/httpx2-2.5.0.tar.gz", hash = "sha256:e2df9cb4611021527ff8a675b1c320b610a2ec397acc8d6fe6e91df2d9b33c29", size = 83121, upload-time = "2026-06-25T14:16:57.491Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl", hash = "sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad", size = 73517, upload-time = "2024-12-06T15:37:21.509Z" },
+    { url = "https://files.pythonhosted.org/packages/31/22/859d8252dad9bc9adee34b52e62cde621ece07b042ccb2ab4da1be46695f/httpx2-2.5.0-py3-none-any.whl", hash = "sha256:3d2d4d9cf4b61f1a1f46a95947cfdb47e80cb56a2f91c6256ac8f58e4891df41", size = 76652, upload-time = "2026-06-25T14:16:55.23Z" },
 ]
 
 [[package]]
@@ -801,13 +801,13 @@ wheels = [
 
 [[package]]
 name = "rio-tiler"
-version = "8.0.9"
+version = "9.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
     { name = "cachetools" },
     { name = "color-operations" },
-    { name = "httpx" },
+    { name = "httpx2" },
     { name = "morecantile" },
     { name = "numexpr" },
     { name = "numpy" },
@@ -816,9 +816,9 @@ dependencies = [
     { name = "rasterio" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/24/fe/6aea1b3a32efa16db59201db857b77b37715b791d5eb3132501998c22530/rio_tiler-8.0.9.tar.gz", hash = "sha256:47c1ec986312e9a3c9082d3b1aa92e1cd7b659ec2cd4768e40a4ba9715225dfa", size = 181493, upload-time = "2026-06-04T11:42:48.864Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9d/e9/f5c6516866f18a1fcad23cef8bbf29d9006d14714b2c8c8dac758c6a4c73/rio_tiler-9.4.0.tar.gz", hash = "sha256:e9872746181097ff2eac68270069459f98d93e82390419d14798ece135759ed1", size = 212213, upload-time = "2026-07-02T16:08:50.475Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0e/f4/c3cb0ce3691eb7d485c1f3cf2e343d3ce4cc4fdc3cd300d3945e234bb906/rio_tiler-8.0.9-py3-none-any.whl", hash = "sha256:6303f1aa92d4ed4b4230dc71e7b4d61f17c056546ff95a56d9c0a50b069215d2", size = 277417, upload-time = "2026-06-04T11:42:47.145Z" },
+    { url = "https://files.pythonhosted.org/packages/06/e9/9fda5bfb9c6cb198a8187740cd4575c6871b966f02cda696a3c43bfa3986/rio_tiler-9.4.0-py3-none-any.whl", hash = "sha256:fd73107b21d3fd7b93214b69eb67ba1359653388e5ff54c7a848281b3a886a1a", size = 315956, upload-time = "2026-07-02T16:08:48.77Z" },
 ]
 
 [[package]]
@@ -915,8 +915,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "titiler-core", specifier = "==1.2.1" },
-    { name = "titiler-extensions", specifier = "==1.2.1" },
+    { name = "titiler-core", specifier = "==2.0.5" },
+    { name = "titiler-extensions", specifier = "==2.0.5" },
     { name = "uvicorn", extras = ["standard"], specifier = "==0.51.0" },
 ]
 
@@ -925,7 +925,7 @@ dev = [{ name = "ruff", specifier = "==0.15.20" }]
 
 [[package]]
 name = "titiler-core"
-version = "1.2.1"
+version = "2.0.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fastapi" },
@@ -937,23 +937,31 @@ dependencies = [
     { name = "rasterio" },
     { name = "rio-tiler" },
     { name = "simplejson" },
-    { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b2/2c/56895d6e2ac6da76bc183b6e287c805ce2176428265b5b4619a8c501dd7d/titiler_core-1.2.1.tar.gz", hash = "sha256:d07ae3205b27c27eff0f7e3abc27cf76f7eb2bc8bae8afd491919b0db2cf7ae9", size = 69865, upload-time = "2026-03-09T17:46:58.317Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/a2/6c022ad85f9125ea682fc0ceb96040fc8510ac59e08a1af046a2761ff642/titiler_core-2.0.5.tar.gz", hash = "sha256:68dc573e85890c7a21617defd554650a8a27edbec59b23758a861ccc397e46f9", size = 69465, upload-time = "2026-06-18T04:27:15.068Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/93/bb/040e2b43764a2cb37a2c05dd6d5fe18bf0133730da031a6131f9daf38f50/titiler_core-1.2.1-py3-none-any.whl", hash = "sha256:6d5adf9ae8d5a883ba5e48b20dc7681b1b46e336571d458e8b56cb2c1a2e3d69", size = 88371, upload-time = "2026-03-09T17:46:59.663Z" },
+    { url = "https://files.pythonhosted.org/packages/c5/a9/a40c85ac8b40245a616eee1e0f301af782e583ef8a863b43053f1f38b5c3/titiler_core-2.0.5-py3-none-any.whl", hash = "sha256:420a395c4e9cec539ffa59872cfad321a154220825b194ea93643f040d498d48", size = 87880, upload-time = "2026-06-18T04:27:09.449Z" },
 ]
 
 [[package]]
 name = "titiler-extensions"
-version = "1.2.1"
+version = "2.0.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "titiler-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/13/c3/cafd548ad99bf38ad198158cbe1c23b7cbe8d5df60b5ee95ab1354d63807/titiler_extensions-1.2.1.tar.gz", hash = "sha256:9c46fa941ec0631a0bc93cd4c60bf5dcc87eb5f54d9d96f5e3ca95a4e611df51", size = 31279, upload-time = "2026-03-09T17:47:10.048Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ae/2f/b13de9f536119a43996fc406fa7917b4ea35ae69093005fe262327963d94/titiler_extensions-2.0.5.tar.gz", hash = "sha256:3e0c0baafeebeb8d79c28e5d74116bd90c578b06fce0699de5433acdfde1ffa2", size = 31952, upload-time = "2026-06-18T04:27:16.611Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/0f/7cbdac1f0713de68e26a828da52ad2f570a01f6a55cd0b417c85c592f7f3/titiler_extensions-1.2.1-py3-none-any.whl", hash = "sha256:4680a1caf5a212cf8ed4d82f987bc0424089d4cd9be9a6ad5ed230b9aa0e2276", size = 38015, upload-time = "2026-03-09T17:47:09.061Z" },
+    { url = "https://files.pythonhosted.org/packages/14/23/3b69774552e2e21f08fee7d3d1dcb7cfaf3964fcec072579a9d8edadee4f/titiler_extensions-2.0.5-py3-none-any.whl", hash = "sha256:7c7e1ca53ce159a49bfe6cef583c0af4938bff8a9b7efe8b1423eea8d3b26916", size = 38650, upload-time = "2026-06-18T04:27:10.663Z" },
+]
+
+[[package]]
+name = "truststore"
+version = "0.10.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/a3/1585216310e344e8102c22482f6060c7a6ea0322b63e026372e6dcefcfd6/truststore-0.10.4.tar.gz", hash = "sha256:9d91bd436463ad5e4ee4aba766628dd6cd7010cf3e2461756b3303710eebc301", size = 26169, upload-time = "2025-08-12T18:49:02.73Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/19/97/56608b2249fe206a67cd573bc93cd9896e1efb9e98bce9c163bcdc704b88/truststore-0.10.4-py3-none-any.whl", hash = "sha256:adaeaecf1cbb5f4de3b1959b42d41f6fab57b2b1666adb59e89cb0b53361d981", size = 18660, upload-time = "2025-08-12T18:49:01.46Z" },
 ]
 
 [[package]]
