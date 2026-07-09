@@ -10,7 +10,7 @@ from typing import Any
 from fastapi import APIRouter
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
-from morecantile import TileMatrixSet, TileMatrixSets, tms
+from morecantile import TileMatrixSet, TileMatrixSets
 from pyproj import CRS
 from titiler.core.errors import DEFAULT_STATUS_CODES, add_exception_handlers
 from titiler.core.factory import TilerFactory, TMSFactory
@@ -108,9 +108,7 @@ def tiles_landing_html() -> str:
           </div>
           <label>Available projections</label>
           <div class="projection-list">
-            <a href="/tileMatrixSets/NetherlandsRDNewQuad">EPSG:28992</a>
-            <a href="/tileMatrixSets/WebMercatorQuad">EPSG:3857</a>
-            <a href="/tileMatrixSets/WorldCRS84Quad">EPSG:4326</a>
+            <a href="/tiles/tileMatrixSets/NetherlandsRDNewQuad">EPSG:28992</a>
           </div>
           <div class="endpoint-list">
             <div>
@@ -278,16 +276,10 @@ netherlands_rd_new = TileMatrixSet.custom(
     matrix_scale=[1, 1],
 )
 
-supported_tms = TileMatrixSets(
-    {
-        TMS_ID: netherlands_rd_new,
-        "WebMercatorQuad": tms.get("WebMercatorQuad"),
-        "WorldCRS84Quad": tms.get("WorldCRS84Quad"),
-    }
-)
+supported_tms = TileMatrixSets({TMS_ID: netherlands_rd_new})
 
 config = load_config(CONFIG_PATH)
-tms_factory = TMSFactory(supported_tms=supported_tms)
+tms_factory = TMSFactory(router_prefix="/tiles", supported_tms=supported_tms)
 
 app = FastAPI(
     title=config.get("title", "Tiles"),
@@ -312,6 +304,10 @@ async def hide_source_urls(request, call_next):
         "<ows:Title>Web Map Tile Service</ows:Title>",
     )
     text = text.replace("<ows:ProviderName>TiTiler</ows:ProviderName>", "")
+    text = text.replace(
+        "<ows:SupportedCRS>http://www.opengis.net/def/crs/EPSG/0/28992</ows:SupportedCRS>",
+        "<ows:SupportedCRS>EPSG:28992</ows:SupportedCRS>",
+    )
     for layer in config["layers"]:
         layer_name = layer["name"]
         for source in {layer["url"], normalize_cog_url(layer["url"])}:
@@ -339,7 +335,7 @@ for layer in config["layers"]:
     )
     app.include_router(tiler.router, prefix=f"/tiles/{layer_name}", tags=[f"Layer: {layer_name}"])
 
-app.include_router(tms_factory.router, tags=["TileMatrixSets"])
+app.include_router(tms_factory.router, prefix="/tiles", tags=["TileMatrixSets"])
 add_exception_handlers(app, DEFAULT_STATUS_CODES)
 
 
@@ -369,6 +365,6 @@ def service_metadata() -> dict[str, str]:
         "layers": "/layers",
         "tiles_ui": "/tiles",
         "tile_matrix_set": TMS_ID,
-        "tile_matrix_sets": "/tileMatrixSets",
+        "tile_matrix_sets": "/tiles/tileMatrixSets",
         "docs": "/docs",
     }

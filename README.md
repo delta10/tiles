@@ -2,11 +2,9 @@
 
 FastAPI tile service serving configured Cloud Optimized GeoTIFF layers as TMS/XYZ and WMTS.
 
-The app registers only these TileMatrixSets:
+The app registers only the Dutch RD New TileMatrixSet:
 
 - `NetherlandsRDNewQuad` for `EPSG:28992`
-- `WebMercatorQuad` for `EPSG:3857`
-- `WorldCRS84Quad` for `EPSG:4326`
 
 ## Config
 
@@ -58,7 +56,7 @@ uv run ruff check .
 - Web UI: `http://127.0.0.1:8000/tiles`
 - Layers JSON: `http://127.0.0.1:8000/layers`
 - Service metadata: `http://127.0.0.1:8000/metadata`
-- TMS list: `http://127.0.0.1:8000/tileMatrixSets`
+- TMS list: `http://127.0.0.1:8000/tiles/tileMatrixSets`
 - Layer map viewer: `http://127.0.0.1:8000/tiles/lufo_2025/NetherlandsRDNewQuad/map.html`
 - Layer TileJSON: `http://127.0.0.1:8000/tiles/lufo_2025/NetherlandsRDNewQuad/tilejson.json?tile_format=png`
 - Layer TMS/XYZ tile URL template: `http://127.0.0.1:8000/tiles/lufo_2025/tiles/NetherlandsRDNewQuad/{z}/{x}/{y}.png`
