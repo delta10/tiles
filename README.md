@@ -21,10 +21,11 @@ Set `TITILER_CONFIG` to read a different file.
 ```json
 {
   "title": "Tiles",
-  "nodata_color": "#ffffff",
   "layers": [
     {
       "name": "example_layer",
+      "nodata_color": "#ffffff",
+      "nodata_color_tolerance": 8,
       "url": "cog://https://example.com/path/to/cog.tif"
     }
   ]
@@ -32,7 +33,7 @@ Set `TITILER_CONFIG` to read a different file.
 ```
 
 Layer names may contain only letters, numbers, underscores, and hyphens.
-Set `nodata_color` globally or per layer as `"#RRGGBB"` or `[r, g, b]` to make pixels matching that output color transparent.
+Set `nodata_color` per layer as `"#RRGGBB"` or `[r, g, b]` to make pixels matching that output color transparent.
 Set `nodata_color_tolerance` to allow near matches per RGB channel; for example, `8` makes `#f7f7f7` through `#ffffff` transparent when `nodata_color` is `#ffffff`.
 
 ## Run

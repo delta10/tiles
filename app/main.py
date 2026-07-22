@@ -65,11 +65,6 @@ def load_config(path: Path) -> dict[str, Any]:
     with path.open() as src:
         config = json.load(src)
 
-    config["_nodata_color"] = parse_nodata_color(config.get("nodata_color"), "nodata_color")
-    config["_nodata_color_tolerance"] = parse_nodata_color_tolerance(
-        config.get("nodata_color_tolerance"), "nodata_color_tolerance"
-    )
-
     layers = config.get("layers")
     if not isinstance(layers, list) or not layers:
         raise ValueError("config.json must contain a non-empty 'layers' array")
@@ -418,10 +413,8 @@ async def hide_source_urls(request, call_next):
 
 for layer in config["layers"]:
     layer_name = layer["name"]
-    nodata_color = layer["_nodata_color"] or config["_nodata_color"]
-    nodata_color_tolerance = (
-        layer["_nodata_color_tolerance"] or config["_nodata_color_tolerance"]
-    )
+    nodata_color = layer["_nodata_color"]
+    nodata_color_tolerance = layer["_nodata_color_tolerance"]
     router = APIRouter()
     tiler = TilerFactory(
         router=router,
