@@ -7,13 +7,17 @@ from html import escape
 from pathlib import Path
 from typing import Any
 
+import numpy
 from fastapi import APIRouter
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from morecantile import TileMatrixSet, TileMatrixSets
 from pyproj import CRS
+from rasterio.dtypes import dtype_ranges
+from rio_tiler.models import ImageData
 from titiler.core.errors import DEFAULT_STATUS_CODES, add_exception_handlers
 from titiler.core.factory import TilerFactory, TMSFactory
+from titiler.core.utils import render_image
 from titiler.extensions.wmts import wmtsExtension
 
 CONFIG_PATH = Path(os.environ.get("TITILER_CONFIG", "config.json"))
@@ -26,10 +30,45 @@ def normalize_cog_url(url: str) -> str:
     return url.removeprefix("cog://")
 
 
+def parse_nodata_color(value: Any, field: str) -> tuple[int, int, int] | None:
+    """Parse a configured RGB color whose matching pixels should be transparent."""
+    if value is None:
+        return None
+
+    if isinstance(value, str):
+        color = value.removeprefix("#")
+        if len(color) != 6 or not re.fullmatch(r"[0-9A-Fa-f]+", color):
+            raise ValueError(f"{field} must be a hex color like '#ffffff'")
+
+        return tuple(int(color[index : index + 2], 16) for index in range(0, 6, 2))
+
+    if isinstance(value, list) and len(value) == 3:
+        if not all(isinstance(part, int) and 0 <= part <= 255 for part in value):
+            raise ValueError(f"{field} must contain color channel integers from 0 through 255")
+
+        return tuple(value)  # type: ignore[return-value]
+
+    raise ValueError(f"{field} must be a hex string or an RGB array")
+
+
+def parse_nodata_color_tolerance(value: Any, field: str) -> int:
+    """Parse a color-key tolerance in RGB channel values."""
+    if value is None:
+        return 0
+    if isinstance(value, int) and 0 <= value <= 255:
+        return value
+    raise ValueError(f"{field} must be an integer from 0 through 255")
+
+
 def load_config(path: Path) -> dict[str, Any]:
     """Load and validate the layer config."""
     with path.open() as src:
         config = json.load(src)
+
+    config["_nodata_color"] = parse_nodata_color(config.get("nodata_color"), "nodata_color")
+    config["_nodata_color_tolerance"] = parse_nodata_color_tolerance(
+        config.get("nodata_color_tolerance"), "nodata_color_tolerance"
+    )
 
     layers = config.get("layers")
     if not isinstance(layers, list) or not layers:
@@ -51,6 +90,12 @@ def load_config(path: Path) -> dict[str, Any]:
         if not isinstance(url, str) or not url:
             raise ValueError(f"layer '{name}' needs a non-empty 'url'")
 
+        layer["_nodata_color"] = parse_nodata_color(
+            layer.get("nodata_color"), f"layer '{name}' nodata_color"
+        )
+        layer["_nodata_color_tolerance"] = parse_nodata_color_tolerance(
+            layer.get("nodata_color_tolerance"), f"layer '{name}' nodata_color_tolerance"
+        )
         layer_names.add(name)
 
     return config
@@ -63,6 +108,54 @@ def path_dependency_for(url: str):
         return normalize_cog_url(url)
 
     return path_dependency
+
+
+def render_func_for(nodata_color: tuple[int, int, int] | None, nodata_color_tolerance: int):
+    """Build a TiTiler render function with an optional configured nodata color."""
+    if nodata_color is None:
+        return render_image
+
+    def render_with_nodata_color(
+        image,
+        colormap=None,
+        output_format=None,
+        add_mask: bool = True,
+        rescale=None,
+        color_formula: str | None = None,
+        **kwargs: Any,
+    ):
+        image = image.post_process(in_range=rescale, color_formula=color_formula)
+        if colormap:
+            image = image.apply_colormap(colormap)
+
+        data, mask = image.data.copy(), image.mask.copy()
+        mask_range = dtype_ranges[str(mask.dtype)]
+        if data.shape[0] < 3:
+            data = numpy.repeat(data[:1], 3, axis=0)
+        red, green, blue = nodata_color
+        data_rgb = data[:3].astype(numpy.int16)
+        nodata_pixels = (mask == mask_range[0]) | (
+            (numpy.abs(data_rgb[0] - red) <= nodata_color_tolerance)
+            & (numpy.abs(data_rgb[1] - green) <= nodata_color_tolerance)
+            & (numpy.abs(data_rgb[2] - blue) <= nodata_color_tolerance)
+        )
+
+        image = ImageData(
+            numpy.ma.MaskedArray(data, mask=False),
+            assets=image.assets,
+            crs=image.crs,
+            bounds=image.bounds,
+            metadata=image.metadata,
+            alpha_mask=numpy.where(nodata_pixels, mask_range[0], mask).astype(mask.dtype),
+        )
+        return render_image(
+            image,
+            output_format=output_format,
+            add_mask=True,
+            **kwargs,
+        )
+
+    return render_with_nodata_color
 
 
 def configured_layers() -> list[dict[str, str]]:
@@ -325,6 +418,10 @@ async def hide_source_urls(request, call_next):
 
 for layer in config["layers"]:
     layer_name = layer["name"]
+    nodata_color = layer["_nodata_color"] or config["_nodata_color"]
+    nodata_color_tolerance = (
+        layer["_nodata_color_tolerance"] or config["_nodata_color_tolerance"]
+    )
     router = APIRouter()
     tiler = TilerFactory(
         router=router,
@@ -332,6 +429,7 @@ for layer in config["layers"]:
         path_dependency=path_dependency_for(layer["url"]),
         supported_tms=supported_tms,
         extensions=[wmtsExtension()],
+        render_func=render_func_for(nodata_color, nodata_color_tolerance),
     )
     app.include_router(tiler.router, prefix=f"/tiles/{layer_name}", tags=[f"Layer: {layer_name}"])
 

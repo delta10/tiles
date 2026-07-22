@@ -1,5 +1,7 @@
 {
   "title": "Tiles",
+  "nodata_color": "#ffffff",
+  "nodata_color_tolerance": 8,
   "layers": [
     {
       "name": "example_layer",
