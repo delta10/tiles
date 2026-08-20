@@ -1,4 +1,4 @@
-FROM python:3.14.4-slim AS builder
+FROM python:3.14.7-slim AS builder
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -17,7 +17,7 @@ COPY app ./app
 
 RUN uv sync --locked --no-dev
 
-FROM python:3.14.4-slim AS runtime
+FROM python:3.14.7-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
