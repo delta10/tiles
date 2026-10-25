@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = "==3.14.*"
 
 [[package]]
@@ -726,14 +726,14 @@ wheels = [
 
 [[package]]
 name = "pystac-ext-xarray-assets"
-version = "1.0.0"
+version = "1.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pystac-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6f/a0/1bcb9ba80eb0e0a6cc4605520d831d7118863559f13f797f271430bad125/pystac_ext_xarray_assets-1.0.0.tar.gz", hash = "sha256:da4f4877c018d531b6b5c45f20bc64842f14587ae86bac8d2acf110804c773d1", size = 6703, upload-time = "2026-06-25T15:50:18.944Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/81/06/053bf90500067d27d7a1299a7f58cfe29656e3b8b91d3734b94f2121babd/pystac_ext_xarray_assets-1.0.1.tar.gz", hash = "sha256:7d75e79a2b8702d1f572eecdf8af6b29a1013789f6de5e688a5a3c9c14254de6", size = 6945, upload-time = "2026-08-10T15:55:31.226Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/48/cc/4f310e5acb0c59c8b3db417fc903a055dc01ac7e7f7e82c941304f30b4d9/pystac_ext_xarray_assets-1.0.0-py3-none-any.whl", hash = "sha256:a31e90e7e9bc5ae191e7449df28c39857c818e8c1cf2c09a2eceaa7c6e13241c", size = 3614, upload-time = "2026-06-25T15:50:17.871Z" },
+    { url = "https://files.pythonhosted.org/packages/ab/a1/4efc99e95c551d63896e667537ee7f1cc0c0583488ac4c6a4ca3c7bd00fe/pystac_ext_xarray_assets-1.0.1-py3-none-any.whl", hash = "sha256:114631f3585aa18d73fa9cae8e256d8937d455af4d9fb4e84f5d0981d2ec3bc4", size = 3931, upload-time = "2026-08-10T15:55:30.065Z" },
 ]
 
 [[package]]
