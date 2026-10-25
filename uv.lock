@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = "==3.14.*"
 
 [[package]]
@@ -678,14 +678,14 @@ wheels = [
 
 [[package]]
 name = "pystac-ext-table"
-version = "1.2.0"
+version = "1.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pystac-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ee/06/d4ad9edaf4bae2922cf86a6ac216375d530fa70e4f13bff28b52c595a2d1/pystac_ext_table-1.2.0.tar.gz", hash = "sha256:c7035db662272a84f1149e7d694c8409f85093cc056cdc655c06e9b9f5cefe37", size = 8003, upload-time = "2026-06-25T15:50:09.908Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5c/45/4ed94fc528a8d0a28bfba3b1c1d4da0a5342c71ae3e311b25b7ba41b5745/pystac_ext_table-1.2.1.tar.gz", hash = "sha256:585bc36338b261dffa1a1b23e7d148e8788ed8a1e9bc71baabe8a566ba6271c3", size = 8217, upload-time = "2026-08-10T15:54:59.269Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9d/52/6209f65f1b4f966525486b7eb39f82f1cd0f8aae592e52c679b520e969ea/pystac_ext_table-1.2.0-py3-none-any.whl", hash = "sha256:461e8475eaee81190c36db818150e0b24d14d46b021f063a928ff6a0ee77a971", size = 4430, upload-time = "2026-06-25T15:50:08.808Z" },
+    { url = "https://files.pythonhosted.org/packages/8f/a4/56d56a017d8caa0be9b0296adbcd405397ec7f7b511d96a8408aea043f41/pystac_ext_table-1.2.1-py3-none-any.whl", hash = "sha256:60dd80deefb0b2f94ec8cf696c9cbfc8b6a530e769d0bbe50a055caa3de07e77", size = 4713, upload-time = "2026-08-10T15:54:57.139Z" },
 ]
 
 [[package]]
