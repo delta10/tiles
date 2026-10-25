@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = "==3.14.*"
 
 [[package]]
@@ -642,14 +642,14 @@ wheels = [
 
 [[package]]
 name = "pystac-ext-sat"
-version = "1.0.0"
+version = "1.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pystac-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/07/d7/0492bae1d417dc4990748183a950fd1e6acbc202a2b11bbb73cc75a37f34/pystac_ext_sat-1.0.0.tar.gz", hash = "sha256:2163b31d3044f9c2965abd9cb4144482813068ff9f99107a240eed06cf78bace", size = 9875, upload-time = "2026-06-25T15:50:12.336Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a5/fb/93551098c26a4c3b599e5e14c92ed8b6148213ba779b93776288782164b9/pystac_ext_sat-1.0.1.tar.gz", hash = "sha256:aa7bce65192335d08b45b21f76cf66380626209c90b8ea5d817de82392c898e8", size = 10105, upload-time = "2026-08-10T15:55:01.456Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e0/ca/20d80d50b5108f649383568d3c103e9cc0cf12e53f283562f9dfc1774dd3/pystac_ext_sat-1.0.0-py3-none-any.whl", hash = "sha256:ee951eee24b47c576863bbf5890957b7094a6a2bb0ef8fc967a4d327dff571fd", size = 4576, upload-time = "2026-06-25T15:50:11.303Z" },
+    { url = "https://files.pythonhosted.org/packages/87/f9/d643fd0854f79c311becb0d7652e994870b796127d1a5ac651c0adec21ea/pystac_ext_sat-1.0.1-py3-none-any.whl", hash = "sha256:6f8e1381289f07d1994a65ae14f728f71ea39273efce063e506705c480f3e775", size = 4852, upload-time = "2026-08-10T15:55:00.359Z" },
 ]
 
 [[package]]
