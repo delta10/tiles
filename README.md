@@ -38,7 +38,7 @@ Set `nodata_color_tolerance` to allow near matches per RGB channel; for example,
 
 ## Run
 
-This project uses `uv` with Python pinned in `pyproject.toml`.
+This project uses `uv` with Python constrained to the 3.14 series in `pyproject.toml`.
 
 Install dependencies and create a local config file:
 

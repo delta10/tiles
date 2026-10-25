@@ -2,7 +2,7 @@
 name = "tiles"
 version = "0.1.0"
 description = "Tile service for configured COG layers as TMS and WMTS."
-requires-python = "==3.14.4"
+requires-python = ">=3.14,<3.15"
 dependencies = [
     "titiler.core==2.0.5",
     "titiler.extensions==2.0.5",
