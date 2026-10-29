@@ -621,14 +621,14 @@ wheels = [
 
 [[package]]
 name = "pystac-ext-sar"
-version = "1.0.0"
+version = "1.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pystac-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c8/30/e229a96be9e03157c92eb7f3bfafbd84702372bd1a7ed23e734094c48ead/pystac_ext_sar-1.0.0.tar.gz", hash = "sha256:0d49130fc55152f039f22ac843df35e1c5b2a1a667a4ee91d4a9c5b3ecd379ca", size = 11122, upload-time = "2026-06-25T15:50:01.836Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/57/8ebb150bb69f441ba98280b147f0b4a7f9c9d0dbb54984c3e7109a83d158/pystac_ext_sar-1.0.1.tar.gz", hash = "sha256:3a1a24a7429d74570a3fb93c534095c18fb42e1b3c8e1c4cdb594091eb23ee0c", size = 11345, upload-time = "2026-08-10T15:55:04.936Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5c/75/8d62c8d697740c01c01d707446b53b332a466d6caf174187588000daa9a8/pystac_ext_sar-1.0.0-py3-none-any.whl", hash = "sha256:4b73d97e4c1cdba1c1d6cc1d69181fed31eefb0ec164500b636d6a8d8bca271c", size = 6262, upload-time = "2026-06-25T15:50:00.762Z" },
+    { url = "https://files.pythonhosted.org/packages/1f/c0/a3a64c3446aa4d41bd551b23127a8dbe45c5abff05b6cdab43edef5c54f8/pystac_ext_sar-1.0.1-py3-none-any.whl", hash = "sha256:58bb69f503250e5b3f77a60a0b5947d4d67440c36f25ebb34698698ded4a0e26", size = 6537, upload-time = "2026-08-10T15:55:03.94Z" },
 ]
 
 [[package]]
