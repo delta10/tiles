@@ -16,11 +16,7 @@ updates:
       python-runtime:
         dependency-type: production
         patterns:
-          - "titiler*"
-          - "uvicorn*"
-          - "fastapi*"
-          - "starlette*"
-          - "rio-tiler*"
+          - "*"
       python-dev:
         dependency-type: development
         patterns:
@@ -33,6 +29,10 @@ updates:
     labels:
       - dependencies
       - docker
+    groups:
+      docker:
+        patterns:
+          - "*"
 
   - package-ecosystem: github-actions
     directory: /
@@ -41,3 +41,7 @@ updates:
     labels:
       - dependencies
       - github-actions
+    groups:
+      github-actions:
+        patterns:
+          - "*"
