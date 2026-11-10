@@ -40,7 +40,7 @@ updates:
       interval: weekly
     labels:
       - dependencies
-      - github-actions
+      - github_actions
     groups:
       github-actions:
         patterns:
